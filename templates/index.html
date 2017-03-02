@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8"/>
+
+	<link rel="stylesheet" type="text/css"
+	      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+	<link rel="stylesheet" type="text/css"
+	      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+	      integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='chosen.min.css') }}">
+
+	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet" type="text/css">
+
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+
+	<title>Înregistrare centrul de excelenţă</title>
+</head>
+<body>
+<div class="container">
+	<div class="row main">
+		<div class="panel-heading">
+			<div class="panel-title text-center">
+				<h1 class="title">Înregistrare centrul de excelenţă</h1>
+				<hr/>
+			</div>
+		</div>
+		<div class="main-login main-center">
+			{% if error %}
+			<div class="alert alert-danger">
+				<center><strong>{{ error }}</strong></center>
+			</div>
+			{% endif %}
+
+			{% if registered %}
+			<div class="alert alert-success">
+				<center>Înregistrare efectuată cu succes!<br/>Numele tău de utilizator este <strong>{{ username }}</strong></center>
+			</div>
+			{% endif %}
+			<form class="form-horizontal" method="post" action="{{ url_for('register') }}">
+
+				<div class="form-group">
+					<label for="fname" class="cols-sm-2 control-label">Nume</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+							<input type="text" class="form-control" name="fname" id="fname"
+							       placeholder="Introdu-ţi prenumele" required/>
+							<input type="text" class="form-control" name="lname" id="lname"
+							       placeholder="Introdu-ţi numele" required/>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="email" class="cols-sm-2 control-label">Email</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+							<input type="text" class="form-control" name="email" id="email"
+							       placeholder="Introdu-ţi adresa de email"/>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="school" class="cols-sm2 control-label">Şcoală</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+							<select data-placeholder="Alege-ţi şcoala" class="form-control chosen-select" id="school"
+							        name="school" required>
+								<option value=""></option>
+								<option value="1">CLUBUL COPIILOR SECTOR 1</option>
+								<option value="2">COLEGIUL NAŢIONAL „I.L. CARAGIALE”</option>
+								<option value="3">COLEGIUL NAŢIONAL DE INFORMATICĂ „TUDOR VIANU”</option>
+								<option value="4">COLEGIUL NAŢIONAL „ION NECULCE”</option>
+								<option value="5">LICEUL DE ARTE PLASTICE „NICOLAE TONITZA”</option>
+								<option value="6">ŞCOALA GIMNAZIALĂ DE ARTE „IOSIF SAVA”</option>
+								<option value="7">ŞCOALA GIMNAZIALĂ DE ARTE NR. 3</option>
+								<option value="8">COLEGIUL ECONOMIC "V. MADGEARU"</option>
+								<option value="9">LICEUL TEHNOLOGIC PARTICULAR „ONICESCU - MIHOC”</option>
+								<option value="10">COLEGIUL TEHNIC "MEDIA"</option>
+								<option value="11">COLEGIUL TEHNIC DE ARHITECTURĂ ŞI LUCRĂRI PUBLICE „IOAN N.
+									SOCOLESCU”
+								</option>
+								<option value="12">COLEGIUL NAŢIONAL „SFÂNTUL SAVA”</option>
+								<option value="13">LICEUL TEORETIC „C-TIN BRÂNCOVEANU”</option>
+								<option value="14">LICEUL TEORETIC „GEORGE CĂLINESCU”</option>
+								<option value="15">LICEUL „FEG”</option>
+								<option value="16">COMPLEXUL ŞCOLAR „CRONOS”</option>
+								<option value="17">COLEGIUL NAŢIONAL „AUREL VLAICU”</option>
+								<option value="18">LICEUL „DIMITRIE PACIUREA”</option>
+								<option value="19">CLUBUL SPORTIV ŞCOLAR NR. 1</option>
+								<option value="20">GRĂDINIŢA NR. 42</option>
+								<option value="21">GRĂDINIŢA NR. 43</option>
+								<option value="22">GRĂDINIŢA NR. 44</option>
+								<option value="23">GRĂDINIŢA NR. 46</option>
+								<option value="24">GRĂDINIŢA NR. 47</option>
+								<option value="25">GRĂDINIŢA NR. 50</option>
+								<option value="26">GRĂDINIŢA NR. 52</option>
+								<option value="27">GRĂDINIŢA NR. 97</option>
+								<option value="29">GRĂDINIŢA NR. 122</option>
+								<option value="30">GRĂDINIŢA NR. 203</option>
+								<option value="31">GRĂDINIŢA NR. 206</option>
+								<option value="32">GRĂDINIŢA NR. 222</option>
+								<option value="33">GRĂDINIŢA NR. 248</option>
+								<option value="34">GRĂDINIŢA NR. 251</option>
+								<option value="35">GRĂDINIŢA NR. 252</option>
+								<option value="36">GRĂDINIŢA „STEAUA”</option>
+								<option value="37">GRĂDINIŢA NR. 283</option>
+								<option value="38">GRĂDINIŢA M.AP.N. NR. 2</option>
+								<option value="39">GRĂDINIŢA CU PROGRAM PRELUNGIT „CAMI”</option>
+								<option value="40">GRĂDINIŢA CU PROGRAM PRELUNGIT „CĂSUŢA PITICILOR”</option>
+								<option value="41">GRĂDINIŢA CU PROGRAM PRELUNGIT „AMERICAN LYCETUFF”</option>
+								<option value="42">GRĂDINIŢA CU PROGRAM PRELUNGIT „BUTTERFLY”</option>
+								<option value="43">GRĂDINIŢA „DREAMS WORLD”</option>
+								<option value="44">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „MICUL PRINŢ”</option>
+								<option value="45">GRĂDINIŢA CU PROGRAM PRELUNGIT „IOANID”</option>
+								<option value="46">GRĂDINIŢA „BLUE BELL”</option>
+								<option value="47">GRĂDINIŢA „HAPPY FACE”</option>
+								<option value="48">GRĂDINIŢA CU PROGRAM PRELUNGIT „ZUZZI”</option>
+								<option value="49">GRĂDINIŢA LUTHERANĂ GERMANĂ</option>
+								<option value="50">GRĂDINIŢA „MAMI ŞI TATI”</option>
+								<option value="51">GRĂDINIŢA „LUI MATEI”</option>
+								<option value="52">GRĂDINIŢA CU PROGRAM PRELUNGIT „ZUM-ZUM”</option>
+								<option value="53">GRĂDINIŢA „KINDERAKADEMIE”</option>
+								<option value="54">GRĂDINIȚA „SF. DUMITRU - MAVROGHENI”</option>
+								<option value="55">GRĂDINIȚA „NEWTON'S ACADEMY”</option>
+								<option value="56">GRĂDINIȚA LUI DAVID</option>
+								<option value="57">ŞCOALA PRIMARĂ „TEDDYBAR”</option>
+								<option value="58">ŞCOALA PRIMARĂ „SMART KIDS”</option>
+								<option value="59">ŞCOALA PRIMARĂ „MARIA KINDER KIDS”</option>
+								<option value="60">ŞCOALA PRIMARĂ LIBERĂ WALDORF</option>
+								<option value="61">ŞCOALA GIMNAZIALĂ „SFINŢII VOIEVOZI”</option>
+								<option value="62">ŞCOALA GIMNAZIALĂ NR. 6</option>
+								<option value="63">ŞCOALA GIMNAZIALĂ „I. HELIADE RĂDULESCU”</option>
+								<option value="64">ŞCOALA GIMNAZIALĂ NR. 13</option>
+								<option value="65">ŞCOALA GIMNAZIALĂ „URUGUAY”</option>
+								<option value="66">ŞCOALA GIMNAZIALĂ NR. 162</option>
+								<option value="67">ŞCOALA GIMNAZIALĂ „NICOLAE GRIGORESCU”</option>
+								<option value="68">ŞCOALA GIMNAZIALĂ NR. 181</option>
+								<option value="69">ŞCOALA GIMNAZIALĂ NR. 183</option>
+								<option value="70">ŞCOALA GIMNAZIALĂ NR. 184</option>
+								<option value="71">ŞCOALA GIMNAZIALĂ „GENESIS”</option>
+								<option value="72">COLEGIUL GERMAN „GOETHE”</option>
+								<option value="73">LICEUL TEORETIC „JEAN MONNET”</option>
+								<option value="74">LICEUL TEORETIC „ŞCOALA MEA”</option>
+								<option value="75">LICEUL TEORETIC „NAŢIONAL”</option>
+								<option value="76">LICEUL GRECO-CATOLIC „TIMOTEI CIPARIU”</option>
+								<option value="77">ŞCOALA GIMNAZIALĂ SPECIALĂ NR. 8</option>
+								<option value="78">ŞCOALA GIMNAZIALĂ SPECIALĂ PENTRU SURZI NR.1</option>
+								<option value="79">GRĂDINIŢA SPECIALĂ PENTRU HIPOACUZICI NR. 65</option>
+								<option value="80">ŞCOALA PRIMARĂ „FRIDOLIN”</option>
+								<option value="81">ŞCOALA PRIMARĂ „LITTLE GENIUS”</option>
+								<option value="82">ŞCOALA GIMNAZIALĂ „NICOLAE TITULESCU”</option>
+								<option value="83">ŞCOALA GIMNAZIALĂ NR. 5</option>
+								<option value="84">ŞCOALA GIMNAZIALĂ NR. 7</option>
+								<option value="85">ŞCOALA GIMNAZIALĂ „HERĂSTRĂU”</option>
+								<option value="86">ŞCOALA GIMNAZIALĂ „PIA BRĂTIANU”</option>
+								<option value="87">ŞCOALA GIMNAZIALĂ „VASILE ALECSANDRI”</option>
+								<option value="88">ŞCOALA GIMNAZIALĂ „GEO BOGZA”</option>
+								<option value="89">ŞCOALA GIMNAZIALĂ „PETRE ISPIRESCU”</option>
+								<option value="90">ŞCOALA GIMNAZIALĂ „EUGEN BARBU”</option>
+								<option value="91">ŞCOALA GIMNAZIALĂ „SF. NICOLAE”</option>
+								<option value="92">ŞCOALA GIMNAZIALĂ NR. 178</option>
+								<option value="93">ŞCOALA GIMNAZIALĂ NR. 179</option>
+								<option value="94">ŞCOALA GIMNAZIALĂ „ALEXANDRU COSTESCU”</option>
+								<option value="95">ŞCOALA GIMNAZIALĂ „ELENA VĂCĂRESCU”</option>
+								<option value="96">ŞCOALA GIMNAZIALĂ NR. 192</option>
+								<option value="97">ŞCOALA GIMNAZIALĂ „IOANID”</option>
+								<option value="98">ŞCOALA GIMNAZIALĂ „SFINŢII TREI IERARHI”</option>
+								<option value="99">ŞCOALA GIMNAZIALĂ „AVENOR”</option>
+								<option value="100">ȘCOALA GIMNAZIALĂ „ALETHEEA”</option>
+								<option value="101">LICEUL TEORETIC „NICOLAE IORGA”</option>
+								<option value="102">LICEUL TEORETIC BULGAR „HRISTO BOTEV”</option>
+								<option value="103">LICEUL TEORETIC „ALEXANDRU VLAHUŢĂ”</option>
+								<option value="104">LICEUL TEORETIC BILINGV „MIGUEL DE CERVANTES”</option>
+								<option value="105">LICEUL TEORETIC „ŞCOALA EUROPEANĂ BUCUREŞTI”</option>
+								<option value="106">COLEGIUL NAŢIONAL DE MUZICĂ „GEORGE ENESCU”</option>
+								<option value="107">ŞCOALA GIMNAZIALĂ SPECIALĂ NR. 7</option>
+								<option value="108">ŞCOALA GIMNAZIALĂ SPECIALĂ NR. 10</option>
+								<option value="109">ŞCOALA GIMNAZIALĂ „TITU MAIORESCU”</option>
+								<option value="110">COLEGIUL TEHNOLOGIC „VIACESLAV HARNAJ”</option>
+								<option value="111">COLEGIUL TEHNIC „DINICU GOLESCU”</option>
+								<option value="112">COLEGIUL TEHNIC DE AERONAUTICĂ „HENRI COANDĂ”</option>
+								<option value="113">COLEGIUL TEHNIC MECANIC „GRIVIŢA”</option>
+								<option value="114">COLEGIUL TEHNIC „MIRCEA CEL BĂTRÂN”</option>
+								<option value="115">ŞCOALA POSTLICEALĂ FEG BUCUREŞTI</option>
+								<option value="116">ŞCOALA POSTLICEALĂ „ECOTERRA”</option>
+								<option value="117">ŞCOALA POSTLICEALĂ SANITARĂ „CENTRUL DE STUDII EUROPENE BUCUREȘTI”
+								</option>
+								<option value="118">COLEGIUL TEHNIC FEROVIAR „MIHAI I”</option>
+								<option value="119">CLUBUL COPIILOR SECTOR 2</option>
+								<option value="120">COLEGIUL NAŢIONAL „CANTEMIR VODĂ”</option>
+								<option value="121">COLEGIUL NAŢIONAL „SPIRU HARET”</option>
+								<option value="122">COLEGIUL NAŢIONAL „VICTOR BABEŞ”</option>
+								<option value="123">COLEGIUL NAŢIONAL BILINGV „GEORGE COŞBUC”</option>
+								<option value="124">ŞCOALA GIMNAZIALĂ DE ARTE NR. 2</option>
+								<option value="125">ŞCOALA GIMNAZIALĂ DE ARTE NR. 4</option>
+								<option value="126">LICEUL TEHNOLOGIC „SFÂNTUL PANTELIMON”</option>
+								<option value="127">COLEGIUL ECONOMIC „A. D. XENOPOL”</option>
+								<option value="128">COLEGIUL ECONOMIC „HERMES”</option>
+								<option value="129">COLEGIUL NAŢIONAL „MIHAI VITEAZUL”</option>
+								<option value="130">COLEGIUL NAŢIONAL „IULIA HAŞDEU”</option>
+								<option value="131">LICEUL TEORETIC „C.A. ROSETTI”</option>
+								<option value="132">LICEUL TEORETIC „MIHAIL SADOVEANU”</option>
+								<option value="133">LICEUL TEORETIC „ECOPROF”</option>
+								<option value="134">LICEUL TEORETIC „VICTORIA”</option>
+								<option value="135">LICEUL TEORETIC „DR. MIOARA MINCU”</option>
+								<option value="136">CLUBUL SPORTIV ŞCOLAR NR. 2</option>
+								<option value="137">CLUBUL SPORTIV ŞCOLAR „DINAMO”</option>
+								<option value="138">GRĂDINIŢA NR. 7</option>
+								<option value="139">GRĂDINIŢA „LICURICI”</option>
+								<option value="140">GRĂDINIŢA „ALBINUŢA”</option>
+								<option value="141">GRĂDINIŢA „LUMINIŢA”</option>
+								<option value="142">GRĂDINIŢA NR. 23</option>
+								<option value="143">GRĂDINIŢA NR. 133</option>
+								<option value="144">GRĂDINIŢA NR. 135</option>
+								<option value="145">GRĂDINIŢA NR. 137</option>
+								<option value="146">GRĂDINIŢA NR. 138</option>
+								<option value="147">GRĂDINIŢA „CASTEL”</option>
+								<option value="148">GRĂDINIŢA NR. 189</option>
+								<option value="149">GRĂDINIŢA „CLOPOŢEL”</option>
+								<option value="150">GRĂDINIŢA NR. 233</option>
+								<option value="151">GRĂDINIŢA NR. 234</option>
+								<option value="152">GRĂDINIŢA NR. 236</option>
+								<option value="153">GRĂDINIŢA NR. 256</option>
+								<option value="154">GRĂDINIŢA „ALICE”</option>
+								<option value="155">GRĂDINIŢA NR. 276</option>
+								<option value="156">GRĂDINIŢA „STELUŢA”</option>
+								<option value="157">GRĂDINIŢA NR. 280</option>
+								<option value="158">GRĂDINIŢA CU PROGRAM PRELUNGIT „ALFABET”</option>
+								<option value="159">GRĂDINIŢA CU PROGRAM PRELUNGIT „AMICII TRAINING”</option>
+								<option value="160">GRĂDINIŢA CU PROGRAM PRELUNGIT „ANGEL S ACADEMY”</option>
+								<option value="161">GRĂDINIŢA CU PROGRAM PRELUNGIT „DIANA”</option>
+								<option value="162">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „MICA ACADEMIE DE ARTE”
+								</option>
+								<option value="163">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „PINK LEMON”</option>
+								<option value="164">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „SIMSALA GRIMM”</option>
+								<option value="165">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „ŞOTRON”</option>
+								<option value="166">GRĂDINIŢA CU PRELUNGIT „INTERNATIONAL KINDERGARTEN & NURSERY”
+								</option>
+								<option value="167">GRĂDINIŢA „CASTELUL COPIILOR”</option>
+								<option value="168">GRĂDINIŢACU PROGRAM NORMAL ŞI PRELUNGIT „WEBSTER”</option>
+								<option value="169">GRĂDINIŢA CU PROGRAM PRELUNGIT „CLUBUL PRÂSLEA CEL VOINIC”</option>
+								<option value="170">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „FLUTURAŞILOR”</option>
+								<option value="171">GRĂDINIŢA CU PROGRAM PRELUNGIT „BELL”</option>
+								<option value="172">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „VISE”</option>
+								<option value="173">GRĂDINIŢA CU PROGRAM PRELUNGIT „COCCINELLE”</option>
+								<option value="174">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „KIDS CLUB”</option>
+								<option value="175">GRĂDINIŢA „DON CASTOR”</option>
+								<option value="176">GRĂDINIŢA CU PROGRAM PRELUNGIT „EMEL”</option>
+								<option value="177">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „MINI TERRA”</option>
+								<option value="178">GRĂDINIŢA „PRIMII PAŞI”</option>
+								<option value="179">GRĂDINIŢA „SUFLET DE COPIL”</option>
+								<option value="180">GRĂDINIŢA „KIDS FIRST”</option>
+								<option value="181">GRADINITA CU PROGRAM PRELUNGIT „AEFIS”</option>
+								<option value="182">GRADINITA CU PROGRAM PRELUNGIT „ALANSITO”</option>
+								<option value="183">GRADINITA „MONTERRA”</option>
+								<option value="184">GRADINITA „CĂSUȚA CU PITICI MARI ȘI MICI”</option>
+								<option value="185">ŞCOALA PRIMARĂ „LUCA”</option>
+								<option value="186">ŞCOALA PRIMARĂ „MONTESSORI” BUCUREŞTI</option>
+								<option value="187">ŞCOALA GIMNAZIALĂ „SF. SILVESTRU”</option>
+								<option value="188">ŞCOALA GIMNAZIALĂ NR. 25</option>
+								<option value="189">ŞCOALA GIMNAZIALĂ NR. 27</option>
+								<option value="190">ŞCOALA GIMNAZIALĂ NR. 28</option>
+								<option value="191">ŞCOALA GIMNAZIALĂ „GRIGORIE GHICA VOIEVOD”</option>
+								<option value="192">ŞCOALA GIMNAZIALĂ NR. 32</option>
+								<option value="193">ŞCOALA GIMNAZIALĂ NR. 40</option>
+								<option value="194">ŞCOALA GIMNAZIALĂ NR. 41</option>
+								<option value="195">ŞCOALA GIMNAZIALĂ „MAICA DOMNULUI”</option>
+								<option value="196">ŞCOALA GIMNAZIALĂ „IANCULUI”</option>
+								<option value="197">ŞCOALA GIMNAZIALĂ „PETRE GHELMEZ”</option>
+								<option value="198">ŞCOALA GIMNAZIALĂ NR. 71</option>
+								<option value="199">ŞCOALA GIMNAZIALĂ NR. 145</option>
+								<option value="200">ŞCOALA GIMNAZIALĂ „ANASTASIA POPESCU”</option>
+								<option value="201">LICEUL TEORETIC „ADY ENDRE”</option>
+								<option value="202">LICEUL TEORETIC WALDORF</option>
+								<option value="203">ŞCOALA GIMNAZIALĂ SPECIALĂ PENTRU DEFICIENŢI DE VEDERE</option>
+								<option value="204">ŞCOALA GIMNAZIALĂ NR. 62</option>
+								<option value="205">ŞCOALA PRIMARĂ „ZEPPELIN SCHULE”</option>
+								<option value="206">ŞCOALA PRIMARĂ „MONTERRA”</option>
+								<option value="207">ȘCOALA PRIMARĂ „COCCINELLE”</option>
+								<option value="208">ŞCOALA GIMNAZIALĂ NR. 4</option>
+								<option value="209">ŞCOALA GIMNAZIALĂ „MARIA ROSETTI”</option>
+								<option value="210">ŞCOALA GIMNAZIALĂ „TUDOR ARGHEZI”</option>
+								<option value="211">ŞCOALA GIMNAZIALĂ NR. 24</option>
+								<option value="212">ŞCOALA GIMNAZIALĂ NR. 31</option>
+								<option value="213">ŞCOALA GIMNAZIALĂ NR. 46</option>
+								<option value="214">ŞCOALA GIMNAZIALĂ NR. 49</option>
+								<option value="215">ŞCOALA GIMNAZIALĂ NR. 51</option>
+								<option value="216">ŞCOALA GIMNAZIALĂ NR. 56</option>
+								<option value="217">ŞCOALA GIMNAZIALĂ „FERDINAND I”</option>
+								<option value="218">ŞCOALA GIMNAZIALĂ NR. 66</option>
+								<option value="219">ŞCOALA GIMNAZIALĂ NR. 77</option>
+								<option value="220">ŞCOALA GIMNAZIALĂ NR. 85</option>
+								<option value="221">ŞCOALA GIMNAZIALĂ NR. 307</option>
+								<option value="222">ŞCOALA GIMNAZIALĂ NR. 39</option>
+								<option value="223">LICEUL TEORETIC „LUCIAN BLAGA”</option>
+								<option value="224">LICEUL TEORETIC BILINGV „ITA WEGMAN”</option>
+								<option value="225">ŞCOALA CENTRALĂ</option>
+								<option value="226">LICEUL TEORETIC „NEW GENERATION SCHOOL”</option>
+								<option value="227">LICEUL TEHNOLOGIC SPECIAL NR. 3</option>
+								<option value="228">ŞCOALA GIMNAZIALĂ SPECIALĂ NR. 1</option>
+								<option value="229">ŞCOALA GIMNAZIALĂ SPECIALĂ NR. 2</option>
+								<option value="230">COLEGIUL NAŢIONAL „EMIL RACOVIŢĂ”</option>
+								<option value="231">LICEUL TEHNOLOGIC „ION I.C. BRĂTIANU”</option>
+								<option value="232">COLEGIUL TEHNIC „EDMOND NICOLAU”</option>
+								<option value="233">LICEUL TEHNOLOGIC „ELECTRONICA INDUSTRIALĂ”</option>
+								<option value="234">COLEGIUL TEHNIC „DIMITRIE LEONIDA”</option>
+								<option value="235">LICEUL TEHNOLOGIC SPECIAL „REGINA ELISABETA”</option>
+								<option value="236">LICEUL TEHNOLOGIC „CONSTANTIN BRÂNCUŞI”</option>
+								<option value="237">ŞCOALA PROFESIONALĂ SPECIALĂ NR. 2</option>
+								<option value="238">ŞCOALA PROFESIONALĂ SPECIALĂ NR. 3</option>
+								<option value="239">ŞCOALA POSTLICEALĂ SANITARĂ „FUNDENI”</option>
+								<option value="240">ŞCOALA POSTLICEALĂ SANITARĂ „CAROL DAVILA”</option>
+								<option value="241">ŞCOALA POSTLICEALĂ SANITARĂ „SF. VASILE CEL MARE”</option>
+								<option value="242">ȘCOALA POSTLICEALĂ SANITARĂ „DOMNIȚA RUXANDRA”</option>
+								<option value="243">LICEUL TEORETIC „TRAIAN”</option>
+								<option value="244">CLUBUL COPIILOR SECTOR 3</option>
+								<option value="245">LICEUL TEORETIC INTERNAŢIONAL DE INFORMATICĂ BUCUREŞTI</option>
+								<option value="246">ŞCOALA GIMNAZIALĂ DE ARTE NR. 5</option>
+								<option value="247">LICEUL TEHNOLOGIC „PROFESIA”</option>
+								<option value="248">LICEUL TEHNOLOGIC „TRAIAN LALESCU”</option>
+								<option value="249">COLEGIUL TEHNIC „COSTIN D. NENIŢESCU”</option>
+								<option value="250">ŞCOALA SUPERIOARĂ COMERCIALĂ „NICOLAE KRETZULESCU”</option>
+								<option value="251">COLEGIUL NAŢIONAL „MATEI BASARAB”</option>
+								<option value="252">LICEUL TEORETIC „ALEXANDRU IOAN CUZA”</option>
+								<option value="253">LICEUL TEORETIC „HYPERION”</option>
+								<option value="254">LICEUL TEORETIC „BENJAMIN FRANKLIN”</option>
+								<option value="255">LICEUL TEOLOGIC BAPTIST „LOGOS”</option>
+								<option value="256">CLUBUL SPORTIV ŞCOLAR NR. 4</option>
+								<option value="257">GRĂDINIŢA NR. 3</option>
+								<option value="258">GRĂDINIŢA NR. 24</option>
+								<option value="259">GRĂDINIŢA „FLOARE DE COLŢ”</option>
+								<option value="260">GRĂDINIŢA NR. 68</option>
+								<option value="261">GRĂDINIŢA NR. 69</option>
+								<option value="262">GRĂDINIŢA NR. 70</option>
+								<option value="263">GRĂDINIŢA NR. 71</option>
+								<option value="264">GRĂDINIŢA NR. 154</option>
+								<option value="265">GRĂDINIŢA NR. 160</option>
+								<option value="266">GRĂDINIŢA „BRÂNDUŞA”</option>
+								<option value="267">GRĂDINIŢA NR. 187</option>
+								<option value="268">GRĂDINIŢA NR. 191</option>
+								<option value="269">GRĂDINIŢA NR. 196</option>
+								<option value="270">GRĂDINIŢA NR. 211</option>
+								<option value="271">GRĂDINIŢA NR. 216</option>
+								<option value="272">GRĂDINIŢA NR. 231</option>
+								<option value="273">GRĂDINIŢA NR. 232</option>
+								<option value="274">GRĂDINIŢA NR. 239</option>
+								<option value="275">GRĂDINIŢA NR. 240</option>
+								<option value="276">GRĂDINIŢA „PEŞTIŞORUL DE AUR”</option>
+								<option value="277">GRĂDINIŢA NR. 255</option>
+								<option value="278">GRĂDINIŢA „KIDS CLUB”</option>
+								<option value="279">GRĂDINIŢA „CROCODIL DANDI”</option>
+								<option value="280">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „MICA PRINŢESA”</option>
+								<option value="281">GRĂDINIŢA DE COPII ÎN LIMBA GERMANĂ CU PROGRAM NORMAL ŞI PRELUNGIT
+									„ÎNGERAŞUL MEU”
+								</option>
+								<option value="282">GRĂDINIŢA CU PROGRAM PRELUNGIT „SFINŢII ÎMPĂRAŢI CONSTANTIN ŞI
+									ELENA”
+								</option>
+								<option value="283">GRĂDINIŢA CU PROGRAM PRELUNGIT „NOEL”</option>
+								<option value="284">GRĂDINIŢA CU PROGRAM PRELUNGIT „LUMEA COPIILOR ŞI A POVEŞTILOR”
+								</option>
+								<option value="285">GRĂDINIŢA „RĂSĂRIT 2”</option>
+								<option value="286">GRĂDINIŢA „HAPPY TREE”</option>
+								<option value="287">GRĂDINIŢA „CASTELUL FERMECAT G&B”</option>
+								<option value="288">GRĂDINIŢA „BAMBI”</option>
+								<option value="289">GRĂDINIŢA „CAMY”</option>
+								<option value="290">GRĂDINIŢA „FUN-TASTIC KIDS”</option>
+								<option value="291">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „KIDTIME”</option>
+								<option value="292">GRĂDINIŢA „PUIUL PUFOS”</option>
+								<option value="293">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „SINCRON”</option>
+								<option value="294">GRĂDINIŢA „GENOVEVA”</option>
+								<option value="295">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „MARTINEL ABCDINO”</option>
+								<option value="296">GRĂDINIŢA CU PROGRAM NORMAL „MELL”</option>
+								<option value="297">GRĂDINIŢA „JOE KINDERGARTEN”</option>
+								<option value="298">GRĂDINIŢA „BOB DE GRÂU”</option>
+								<option value="299">GRĂDINIŢA CU PROGRAM PRELUNGIT „FAMILY KIDS”</option>
+								<option value="300">GRĂDINIŢA „INA KINDERGARTEN”</option>
+								<option value="301">GRĂDINIŢA „ANA LUGOJANA 2”</option>
+								<option value="302">GRĂDINIŢA „PITICUL CURAJOS”</option>
+								<option value="303">GRĂDINIŢA ,,PALATUL COPIILOR''</option>
+								<option value="304">GRĂDINIŢA CENTRUL EDUCATIONAL „FECIOARA MARIA''</option>
+								<option value="305">GRĂDINIŢA „ARLECHINO&FRIENDS''</option>
+								<option value="306">GRĂDINIŢA „BAMBOO”</option>
+								<option value="307">GRĂDINIŢA „MARIPOSA KIDS”</option>
+								<option value="308">ŞCOALA PRIMARĂ „SPECTRUM''</option>
+								<option value="309">ŞCOALA PRIMARĂ „JUST 4 KIDS”</option>
+								<option value="310">ŞCOALA PRIMARĂ „CASTELUL FERMECAT OLIMPIA”</option>
+								<option value="311">ŞCOALA PRIMARĂ „CĂPȘUNIK”</option>
+								<option value="312">ŞCOALA GIMNAZIALĂ „VOIEVOD NEAGOE BASARAB”</option>
+								<option value="313">ŞCOALA GIMNAZIALĂ NR. 47</option>
+								<option value="314">ŞCOALA GIMNAZIALĂ NR. 55</option>
+								<option value="315">ŞCOALA GIMNAZIALĂ NR. 81</option>
+								<option value="316">ŞCOALA GIMNAZIALĂ NR. 84</option>
+								<option value="317">ŞCOALA GIMNAZIALĂ NR. 86</option>
+								<option value="318">ŞCOALA GIMNAZIALĂ NR. 88</option>
+								<option value="319">COMPLEX EDUCAŢIONAL LAUDER-REUT</option>
+								<option value="320">LICEUL TEORETIC „MIHAI IONESCU”</option>
+								<option value="321">ŞCOALA GIMNAZIALĂ SPECIALĂ NR. 5</option>
+								<option value="322">ŞCOALA PRIMARĂ „INASCHOOL”</option>
+								<option value="323">ŞCOALA PRIMARĂ „SEB”</option>
+								<option value="324">ŞCOALA PRIMARĂ „ARLECHINO&FRIENDS”</option>
+								<option value="325">ŞCOALA GIMNAZIALĂ NR. 20</option>
+								<option value="326">ŞCOALA GIMNAZIALĂ „LIVIU REBREANU”</option>
+								<option value="327">ŞCOALA GIMNAZIALĂ NR. 54</option>
+								<option value="328">ŞCOALA GIMNAZIALĂ NR. 67</option>
+								<option value="329">ŞCOALA GIMNAZIALĂ CEZAR BOLLIAC</option>
+								<option value="330">ŞCOALA GIMNAZIALĂ „BARBU DELAVRANCEA”</option>
+								<option value="331">ŞCOALA GIMNAZIALĂ „LEONARDO DA VINCI”</option>
+								<option value="332">ŞCOALA GIMNAZIALĂ NR. 78</option>
+								<option value="333">ŞCOALA GIMNAZIALĂ NR. 80</option>
+								<option value="334">ŞCOALA GIMNAZIALĂ NR. 82</option>
+								<option value="335">ŞCOALA GIMNAZIALĂ „MIHAI BOTEZ”</option>
+								<option value="336">ŞCOALA GIMNAZIALĂ „NICOLAE LABIŞ”</option>
+								<option value="337">ŞCOALA GIMNAZIALĂ NR. 92</option>
+								<option value="338">ŞCOALA GIMNAZIALĂ NR. 95</option>
+								<option value="339">ŞCOALA GIMNAZIALĂ NR. 112</option>
+								<option value="340">ŞCOALA GIMNAZIALĂ NR. 116</option>
+								<option value="341">ŞCOALA GIMNAZIALĂ NR. 149</option>
+								<option value="342">ŞCOALA GIMNAZIALĂ NR. 195</option>
+								<option value="343">ŞCOALA GIMNAZIALĂ „FEDERICO GARCIA LORCA”</option>
+								<option value="344">ŞCOALA GIMNAZIALĂ „ALEXANDRU IOAN CUZA”</option>
+								<option value="345">ŞCOALA GIMNAZIALĂ NR. 200</option>
+								<option value="346">ŞCOALA GIMNAZIALĂ „STEP BY STEP”</option>
+								<option value="347">ŞCOALA GIMNAZIALA „METROPOLITANĂ ARC”</option>
+								<option value="348">LICEUL TEORETIC „DANTE ALIGHIERI”</option>
+								<option value="349">LICEUL TEORETIC „NICHITA STĂNESCU”</option>
+								<option value="350">LICEUL TEORETIC „DECEBAL”</option>
+								<option value="351">ŞCOALA GIMNAZIALĂ „MEXIC”</option>
+								<option value="352">COLEGIUL TEHNIC „MIHAI BRAVU”</option>
+								<option value="353">LICEUL TEHNOLOGIC THEODOR PALLADY</option>
+								<option value="354">LICEUL TEHNOLOGIC „ELIE RADU”</option>
+								<option value="355">COLEGIUL TEHNIC „ANGHEL SALIGNY”</option>
+								<option value="356">LICEUL TEHNOLOGIC „DRAGOMIR HURMUZESCU”</option>
+								<option value="357">ŞCOALA POSTLICEALĂ SANITARĂ „SFÂNTUL IOAN”</option>
+								<option value="358">ŞCOALA TEHNICĂ POSTLICEALĂ DE ARTĂ TEATRALĂ ŞI CINEMATOGRAFICĂ
+								</option>
+								<option value="359">CLUBUL COPIILOR SECTOR 4</option>
+								<option value="360">LICEUL DE COREGRAFIE „FLORIA CAPSALI”</option>
+								<option value="361">LICEUL TEHNOLOGIC „MIRCEA VULCĂNESCU”</option>
+								<option value="362">LICEUL TEHNOLOGIC DE METROLOGIE „TRAIAN VUIA”</option>
+								<option value="363">COLEGIUL NAŢIONAL „GHEORGHE ŞINCAI”</option>
+								<option value="364">COLEGIUL NAŢIONAL „ION CREANGĂ”</option>
+								<option value="365">COLEGIUL NAŢIONAL „OCTAV ONICESCU”</option>
+								<option value="366">LICEUL TEOLOGIC PENTICOSTAL „EMANUEL”</option>
+								<option value="367">SEMINARUL TEOLOGIC ORTODOX</option>
+								<option value="368">LICEUL TEOLOGIC ADVENTIST „ŞTEFAN DEMETRESCU”</option>
+								<option value="369">CLUBUL SPORTIV ŞCOLAR NR. 6</option>
+								<option value="370">GRĂDINIŢA NR. 4</option>
+								<option value="371">GRĂDINIŢA NR. 30</option>
+								<option value="372">GRĂDINIŢA „SCUFIŢA ROŞIE”</option>
+								<option value="373">GRĂDINIŢA NR. 62</option>
+								<option value="374">GRĂDINIŢA NR. 149</option>
+								<option value="375">GRĂDINIŢA „PANSELUŢA”</option>
+								<option value="376">GRĂDINIŢA „PISICILE ARISTOCRATE”</option>
+								<option value="377">GRĂDINIŢA „DUMBRAVA MINUNATĂ”</option>
+								<option value="378">GRĂDINIŢA „STROP DE ROUĂ”</option>
+								<option value="379">GRĂDINIŢA „FLOARE ALBASTRĂ”</option>
+								<option value="380">GRĂDINIŢA NR. 224</option>
+								<option value="381">GRĂDINIŢA NR. 225</option>
+								<option value="382">GRĂDINIŢA „PITICOT”</option>
+								<option value="383">GRĂDINIŢA „MĂRŢIŞOR”</option>
+								<option value="384">GRĂDINIŢA ÎNŞIRTE MĂRGĂRITE</option>
+								<option value="385">GRĂDINIŢA „ALBĂ CA ZĂPADA ŞI PITICII”</option>
+								<option value="386">GRĂDINIŢA „CIUPERCUŢA”</option>
+								<option value="387">GRĂDINIŢA „101 DALMAŢIENI”</option>
+								<option value="388">GRĂDINIŢA „ANA LUGOJANA”</option>
+								<option value="389">GRĂDINIŢA „CHILDREN S JOY”</option>
+								<option value="390">GRĂDINIŢA „CHILDREN`S ACADEMY”</option>
+								<option value="391">GRĂDINIŢA „EUROKID”</option>
+								<option value="392">GRĂDINIŢA „FORTZA URSULEŢULUI DE PLUŞ”</option>
+								<option value="393">GRĂDINIŢA „PISICEL”</option>
+								<option value="394">GRĂDINIŢA „PRIKINDEL”</option>
+								<option value="395">GRĂDINIŢA „ŞAPTE ANI”</option>
+								<option value="396">GRĂDINIŢA „TIC-PITIC”</option>
+								<option value="397">GRĂDINIŢA „ADIWELT”</option>
+								<option value="398">GRĂDINIŢA „BARBĂ COT”</option>
+								<option value="399">GRĂDINIŢA „ELITE”</option>
+								<option value="400">GRĂDINIŢA „GĂRGĂRIŢA”</option>
+								<option value="401">GRĂDINIŢA „MARIA WARD”</option>
+								<option value="402">GRĂDINIŢA „MELBA”</option>
+								<option value="403">GRĂDINIŢA „PRICHINDEL”</option>
+								<option value="404">GRĂDINIŢA „ASCHIUŢĂ 2003”</option>
+								<option value="405">GRĂDINIŢA „EVRIKA”</option>
+								<option value="406">GRĂDINIŢA „ARICI POGONICI”</option>
+								<option value="407">GRĂDINIŢA „GAN EDEN”</option>
+								<option value="408">GRĂDINIŢA „DORA”</option>
+								<option value="409">GRĂDINIŢA „YUKI”</option>
+								<option value="410">GRĂDINIŢA CU PROGRAM PRELUNGIT „CĂSUŢA DACILOR”</option>
+								<option value="411">GRĂDINIŢA CU PROGRAM PRELUNGIT „HAPPY JUNIOR”</option>
+								<option value="412">GRĂDINIȚA „IQ-EST”</option>
+								<option value="413">ȘCOALA PRIMARĂ „KIDS PALACE”</option>
+								<option value="414">ȘCOALA PRIMARĂ „BIG SMILE”</option>
+								<option value="415">ŞCOALA PRIMARĂ „CASA FERICIRII”</option>
+								<option value="416">ŞCOALA PRIMARĂ „IEPURAŞUL BOCANILĂ”</option>
+								<option value="417">ŞCOALA PRIMARĂ „DREAMLAND”</option>
+								<option value="418">ŞCOALA GIMNAZIALĂ NR. 96</option>
+								<option value="419">ŞCOALA GIMNAZIALĂ „AVRAM IANCU”</option>
+								<option value="420">ŞCOALA GIMNAZIALĂ „GEORGE BACOVIA”</option>
+								<option value="421">ŞCOALA GIMNAZIALĂ NR. 129</option>
+								<option value="422">ŞCOALA GIMNAZIALĂ NR. 133</option>
+								<option value="423">ŞCOALA GIMNAZIALĂ NR. 194</option>
+								<option value="424">GRĂDINIŢA CU PROGRAM NORMAL ȘI PRELUNGIT „GE CE PIC ENGLISHKINDER”
+								</option>
+								<option value="425">GRĂDINIŢA CU PROGRAM PRELUNGIT „HANSEL UND GRETEL”</option>
+								<option value="426">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „HAPPY KIDS”</option>
+								<option value="427">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „KARIN S KIDS ACADEMY”
+								</option>
+								<option value="428">GRĂDINIŢA „AVENOR”</option>
+								<option value="429">GRĂDINIŢA CU PROGRAM PRELUNGIT „MARY POPPINS”</option>
+								<option value="430">GRĂDINIŢA CU PROGRAM NORMAL „FRIDOLIN”</option>
+								<option value="431">GRĂDINIŢA CU PROGRAM PRELUNGIT „OLGA GUDYNN INTERNATIONAL SCHOOL”
+								</option>
+								<option value="432">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „THE LITTLE ARTIST”
+								</option>
+								<option value="433">GR?DINI?A CU PROGRAM PRELUNGIT ?SUPER KIDS CENTER ODT?</option>
+								<option value="434">ŞCOALA GIMNAZIALĂ NR. 308</option>
+								<option value="435">ŞCOALA GIMNAZIALĂ SPECIALĂ NR. 3</option>
+								<option value="436">ŞCOALA GIMNAZIALĂ SPECIALĂ NR. 4</option>
+								<option value="437">ŞCOALA GIMNAZIALĂ SPECIALĂ „SF. NICOLAE”</option>
+								<option value="438">ŞCOALA GIMNAZIALĂ NR. 190</option>
+								<option value="439">ŞCOALA GIMNAZIALĂ „IONEL TEODOREANU”</option>
+								<option value="440">ŞCOALA GIMNAZIALĂ „IENĂCHIŢĂ VĂCĂRESCU”</option>
+								<option value="441">ŞCOALA GIMNAZIALĂ NR. 79</option>
+								<option value="442">ŞCOALA GIMNAZIALĂ „EMIL RACOVIŢĂ”</option>
+								<option value="443">ŞCOALA GIMNAZIALĂ NR. 97</option>
+								<option value="444">ŞCOALA GIMNAZIALĂ NR. 99</option>
+								<option value="445">ŞCOALA GIMNAZIALĂ „GENERAL EREMIA GRIGORESCU”</option>
+								<option value="446">ŞCOALA GIMNAZIALĂ NR. 108</option>
+								<option value="447">ŞCOALA GIMNAZIALĂ „ŞERBAN-VODĂ”</option>
+								<option value="448">ŞCOALA GIMNAZIALĂ „GEORGE TOPÂRCEANU”</option>
+								<option value="449">ŞCOALA GIMNAZIALĂ NR. 113</option>
+								<option value="450">ŞCOALA GIMNAZIALĂ NR. 119</option>
+								<option value="451">ŞCOALA GIMNAZIALĂ „MĂRŢIŞOR”</option>
+								<option value="452">ŞCOALA GIMNAZIALĂ NR. 165</option>
+								<option value="453">ŞCOALA GIMNAZIALĂ NR. 189</option>
+								<option value="454">COLEGIUL TEHNIC „PETRU RAREŞ”</option>
+								<option value="455">COLEGIUL NAŢIONAL „MIHAI EMINESCU”</option>
+								<option value="456">COLEGIUL NAŢIONAL DE ARTE „DINU LIPATTI”</option>
+								<option value="457">COLEGIUL ROMANO-CATOLIC „SFÂNTUL IOSIF”</option>
+								<option value="458">COLEGIUL TEHNIC „MIRON NICOLESCU”</option>
+								<option value="459">LICEUL TEHNOLOGIC „DACIA”</option>
+								<option value="460">CLUBUL COPIILOR SECTOR 5</option>
+								<option value="461">COLEGIUL NAŢIONAL „GHEORGHE LAZĂR”</option>
+								<option value="462">LICEUL TEHNOLOGIC „DIMITRIE GUSTI”</option>
+								<option value="463">COLEGIUL TEHNIC ENERGETIC</option>
+								<option value="464">COLEGIUL TEHNOLOGIC „GRIGORE CERCHEZ”</option>
+								<option value="465">CLUBUL SPORTIV ŞCOLAR „STEAUA”</option>
+								<option value="466">GRĂDINIŢA ELECTROMAGNETICA</option>
+								<option value="467">GRĂDINIŢA NR. 34</option>
+								<option value="468">GRĂDINIŢA NR. 35</option>
+								<option value="469">GRĂDINIŢA NR. 53</option>
+								<option value="470">GRĂDINIŢA NR. 54</option>
+								<option value="471">GRĂDINIŢA „FLOAREA-SOARELUI”</option>
+								<option value="472">GRĂDINIŢA NR. 72</option>
+								<option value="473">GRĂDINIŢA NR. 73</option>
+								<option value="474">GRĂDINIŢA NR. 168</option>
+								<option value="475">GRĂDINIŢA „PARADISUL VERDE”</option>
+								<option value="476">GRĂDINIŢA NR. 178</option>
+								<option value="477">GRĂDINIŢA NR. 185</option>
+								<option value="478">GRĂDINIŢA NR. 205</option>
+								<option value="479">GRĂDINIŢA NR. 242</option>
+								<option value="480">GRĂDINIŢA NR. 244</option>
+								<option value="481">GRĂDINIŢA NR. 245</option>
+								<option value="482">GRĂDINIŢA NR. 268</option>
+								<option value="483">GRĂDINIŢA NR. 269</option>
+								<option value="484">GRĂDINIŢA „CĂSUŢA FERMECATĂ”</option>
+								<option value="485">GRĂDINIŢA NR. 271</option>
+								<option value="486">GRĂDINIŢA CU PROGRAM NORLAM ŞI PRELUNGIT „SFÂNTUL ANDREI”</option>
+								<option value="487">GRĂDINIŢA „ALEXANDRA KIDS”</option>
+								<option value="488">GRĂDINIŢA CU PROGRAM PRELUNGIT „HAPPY UNIVERS”</option>
+								<option value="489">GRĂDINIŢA CU PROGRAM NORLAM ŞI PRELUNGIT „CUIBUŞORUL ZÂNELOR”
+								</option>
+								<option value="490">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „MARIO & FRENDS”</option>
+								<option value="491">GRĂDINIŢA CU PROGRAM PRELUNGIT „OLGA GUDYNN INTERNATIONAL SCHOOL”
+								</option>
+								<option value="492">GRĂDINIŢA CU PROGRAM PRELUNGIT „ADNAN”</option>
+								<option value="493">ŞCOALA PRIMARĂ „COPIL DORIT”</option>
+								<option value="494">ŞCOALA PRIMARĂ „MICUL LORD”</option>
+								<option value="495">ŞCOALA PRIMARĂ „CONIL”</option>
+								<option value="496">ŞCOALA PRIMARĂ „MARYLAND”</option>
+								<option value="497">ŞCOALA PRIMARĂ „RAINBOW KIDS”</option>
+								<option value="498">ŞCOALA GIMNAZIALĂ NR. 115</option>
+								<option value="499">ŞCOALA GIMNAZIALĂ NR. 125</option>
+								<option value="500">ŞCOALA GIMNAZIALĂ NR. 126</option>
+								<option value="501">ŞCOALA GIMNAZIALĂ NR. 144</option>
+								<option value="502">ŞCOALA GIMNAZIALĂ NR. 150</option>
+								<option value="503">COLEGIUL TEHNIC DE INDUSTRIE ALIMENTARĂ „DUMITRU MOŢOC”</option>
+								<option value="504">ŞCOALA „ADA SCHOOL”</option>
+								<option value="505">ŞCOALA GIMNAZIALĂ NR. 2</option>
+								<option value="506">ŞCOALA GIMNAZIALĂ NR. 103</option>
+								<option value="507">ŞCOALA GIMNAZIALĂ „PRINCIPESA MARGARETA”</option>
+								<option value="508">ŞCOALA GIMNAZIALĂ NR. 124</option>
+								<option value="509">ŞCOALA GIMNAZIALĂ NR. 127</option>
+								<option value="510">ŞCOALA GIMNAZIALĂ NR. 128</option>
+								<option value="511">ŞCOALA GIMNAZIALĂ „LUCEAFĂRUL”</option>
+								<option value="512">ŞCOALA GIMNAZIALĂ NR. 131</option>
+								<option value="513">ŞCOALA GIMNAZIALĂ „GRIGORE TOCILESCU”</option>
+								<option value="514">ŞCOALA GIMNAZIALĂ NR. 134</option>
+								<option value="515">ŞCOALA GIMNAZIALĂ NR. 135</option>
+								<option value="516">ŞCOALA GIMNAZIALĂ NR. 136</option>
+								<option value="517">ŞCOALA GIMNAZIALĂ „MIRCEA SÂNTIMBREANU”</option>
+								<option value="518">ŞCOALA GIMNAZIALĂ „ION I.C. BRĂTIANU”</option>
+								<option value="519">ŞCOALA GIMNAZIALĂ NR. 143</option>
+								<option value="520">ŞCOALA GIMNAZIALĂ „I. G. DUCA”</option>
+								<option value="521">ŞCOALA GIMNAZIALĂ „PETRACHE POENARU”</option>
+								<option value="522">ŞCOALA GIMNAZIALĂ „GEORGE CĂLINESCU”</option>
+								<option value="523">ŞCOALA GIMNAZIALĂ NR. 188</option>
+								<option value="524">ŞCOALA GIMNAZIALĂ NR. 280</option>
+								<option value="525">ŞCOALA GIMNAZIALĂ „RUT”</option>
+								<option value="526">LICEUL TEORETIC „ŞTEFAN ODOBLEJA”</option>
+								<option value="527">LICEUL TEORETIC „DIMITRIE BOLINTINEANU”</option>
+								<option value="528">LICEUL TEORETIC „ION BARBU”</option>
+								<option value="529">ŞCOALA GIMNAZIALĂ SPECIALĂ NR. 9</option>
+								<option value="530">COLEGIUL ECONOMIC „VIILOR”</option>
+								<option value="531">ŞCOALA POSTLICEALĂ „IOAN PAUL AL II-LEA”</option>
+								<option value="532">CLUBUL COPIILOR SECTOR 6</option>
+								<option value="533">COLEGIUL NAŢIONAL „GRIGORE MOISIL”</option>
+								<option value="534">COLEGIUL ECONOMIC „COSTIN C. KIRIŢESCU”</option>
+								<option value="535">LICEUL CU PROGRAM SPORTIV „MIRCEA ELIADE”</option>
+								<option value="536">LICEUL TEHNOLOGIC „PETRU PONI”</option>
+								<option value="537">LICEUL TEORETIC „TUDOR VLADIMIRESCU”</option>
+								<option value="538">LICEUL TEORETIC „PHOENIX”</option>
+								<option value="539">LICEUL TEORETIC „DR. CONSTANTIN ANGELESCU”</option>
+								<option value="540">LICEUL TEORETIC „ATLAS”</option>
+								<option value="541">CLUBUL SPORTIV ŞCOLAR NR. 5</option>
+								<option value="542">GRĂDINIŢA NR. 40</option>
+								<option value="543">GRĂDINIŢA NR. 41</option>
+								<option value="544">GRĂDINIŢA „HILLARY CLINTON”</option>
+								<option value="545">GRĂDINIŢA „SPIRIDUŞII”</option>
+								<option value="546">GRĂDINIŢA NR. 94</option>
+								<option value="547">GRĂDINIŢA NR. 111</option>
+								<option value="548">GRĂDINIŢA NR. 170</option>
+								<option value="549">GRĂDINIŢA „PRICHINDEL”</option>
+								<option value="550">GRĂDINIŢA „ZÂNA FLORILOR”</option>
+								<option value="551">GRĂDINIŢA NR. 208</option>
+								<option value="552">GRĂDINIŢA NR. 209</option>
+								<option value="553">GRĂDINIŢA NR. 210</option>
+								<option value="554">GRĂDINIŢA NR. 217</option>
+								<option value="555">GRĂDINIŢA NR. 218</option>
+								<option value="556">GRĂDINIŢA NR. 229</option>
+								<option value="557">GRĂDINIŢA NR. 230</option>
+								<option value="558">GRĂDINIŢA NR. 246</option>
+								<option value="559">GRĂDINIŢA NR. 250</option>
+								<option value="560">GRĂDINIŢA NR. 272</option>
+								<option value="561">GRĂDINIŢA NR. 273</option>
+								<option value="562">GRĂDINIŢA NR. 274</option>
+								<option value="563">GRĂDINIŢA „PARADISUL PITICILOR”</option>
+								<option value="564">GRĂDINIŢA M.AP.N. NR. 1</option>
+								<option value="565">GRĂDINIŢA „COLŢ DE RAI”</option>
+								<option value="566">GRĂDINIŢA „DUMBRAVA MINUNILOR”</option>
+								<option value="567">GRĂDINIŢA „FULG DE NEA”</option>
+								<option value="568">GRĂDINIŢA CU PROGRAM PRELUNGIT „ALBINUŢELE”</option>
+								<option value="569">GRĂDINIŢA CU PROGRAM PRELUNGIT „ADA KINDERGARDEN”</option>
+								<option value="570">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „ALBĂ CA ZĂPADA”</option>
+								<option value="571">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „BLUE FARRY”</option>
+								<option value="572">GRĂDINIŢA CU PROGRAM NORMAL „CHERRY TREE”</option>
+								<option value="573">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „CURCUBEUL VESELIEI”
+								</option>
+								<option value="574">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „DARIA”</option>
+								<option value="575">GRĂDINIŢA CU PROGRAM PRELUNGIT „DEGEŢICA”</option>
+								<option value="576">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „DISCOVER-ME”</option>
+								<option value="577">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „NICHOLAS KINDERGARTEN”
+								</option>
+								<option value="578">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „ROSA ZANGARA”</option>
+								<option value="579">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „SCOOBY AND FRIENDS”
+								</option>
+								<option value="580">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „HAPPY PLANET KIDS”
+								</option>
+								<option value="581">GRĂDINIŢA CU PROGRAM NORMAL ŞI PRELUNGIT „PLANETA COPIILOR”</option>
+								<option value="582">GRĂDINIŢA CU PROGRAM PRELUNGIT „SEMILUNA”</option>
+								<option value="583">GRĂDINIŢA „SMILEY KINDERGARTEN”</option>
+								<option value="584">GRĂDINIŢA „BUTTERFLY IV”</option>
+								<option value="585">GRADINITA „MARCHENGARTEN”</option>
+								<option value="586">GRADINITA „DAVID CENTER”</option>
+								<option value="587">GRADINITA CU PROGRAM NORMAL SI PRELUNGIT „ALEGRA”</option>
+								<option value="588">GRADINITA CU PROGRAM NORMAL SI PRELUNGIT „ORHIDEEA KIDS”</option>
+								<option value="589">COLEGIUL UCECOM „SPIRU HARET”</option>
+								<option value="590">ŞCOALA PRIMARĂ „ROMÂNO-FINLANDEZĂ”</option>
+								<option value="591">ŞCOALA PRIMARĂ „CASA MONTESSORI”</option>
+								<option value="592">ŞCOALA PRIMARĂ „KING GEORGE”</option>
+								<option value="593">ŞCOALA PRIMARĂ „ROSE MARY”</option>
+								<option value="594">ŞCOALA GIMNAZIALĂ NR. 161</option>
+								<option value="595">ŞCOALA GIMNAZIALĂ NR. 163</option>
+								<option value="596">ŞCOALA GIMNAZIALĂ NR. 168</option>
+								<option value="597">ŞCOALA GIMNAZIALĂ SPECIALĂ „CONSTANTIN PĂUNESCU”</option>
+								<option value="598">ŞCOALA PRIMARĂ „PLANETA COPIILOR”</option>
+								<option value="599">ŞCOALA PRIMARĂ „SEMILUNA”</option>
+								<option value="600">ŞCOALA PRIMARĂ „BLUE FARRY”</option>
+								<option value="601">ŞCOALA GIMNAZIALĂ NR. 59</option>
+								<option value="602">ŞCOALA GIMNAZIALĂ NR. 117</option>
+								<option value="603">ŞCOALA GIMNAZIALĂ NR. 142</option>
+								<option value="604">ŞCOALA GIMNAZIALĂ NR. 153</option>
+								<option value="605">ŞCOALA GIMNAZIALĂ NR. 156</option>
+								<option value="606">ŞCOALA GIMNAZIALĂ „ION DUMITRIU”</option>
+								<option value="607">ŞCOALA GIMNAZIALĂ „SFÂNTA TREIME”</option>
+								<option value="608">ŞCOALA GIMNAZIALĂ NR. 164</option>
+								<option value="609">ŞCOALA GIMNAZIALĂ NR. 167</option>
+								<option value="610">ŞCOALA GIMNAZIALĂ NR. 169</option>
+								<option value="611">ŞCOALA GIMNAZIALĂ „SFÂNTUL ANDREI”</option>
+								<option value="612">ŞCOALA GIMNAZIALĂ „CONSTANTIN BRÂNCUŞI”</option>
+								<option value="613">ŞCOALA GIMNAZIALĂ „SFINŢII CONSTANTIN ŞI ELENA”</option>
+								<option value="614">ŞCOALA GIMNAZIALĂ NR. 193</option>
+								<option value="615">ŞCOALA GIMNAZIALĂ NR. 197</option>
+								<option value="616">ŞCOALA GIMNAZIALĂ NR. 198</option>
+								<option value="617">ŞCOALA GIMNAZIALĂ „ADRIAN PĂUNESCU”</option>
+								<option value="618">ŞCOALA GIMNAZIALĂ NR. 206</option>
+								<option value="619">ŞCOALA GIMNAZIALĂ NR. 279</option>
+								<option value="620">ŞCOALA GIMNAZIALĂ NR. 309</option>
+								<option value="621">ŞCOALA GIMNAZIALĂ „REGELE MIHAI I”</option>
+								<option value="622">ŞCOALA GIMNAZIALĂ NR. 311</option>
+								<option value="623">LICEUL TEHNOLOGIC „SF. ANTIM IVIREANU”</option>
+								<option value="624">LICEUL TEORETIC „MARIN PREDA”</option>
+								<option value="625">LICEUL TEORETIC „EUGEN LOVINESCU”</option>
+								<option value="626">COLEGIUL NAŢIONAL „ELENA CUZA”</option>
+								<option value="627">ŞCOALA GIMNAZIALĂ SPECIALĂ PENTRU DEFICIENŢI DE AUZ „SFÂNTA MARIA”
+								</option>
+								<option value="628">COLEGIUL TEHNIC DE POŞTĂ ŞI TELECOMUNICAŢII „GHEORGHE AIRINEI”
+								</option>
+								<option value="629">COLEGIUL TEHNIC „IULIU MANIU”</option>
+								<option value="630">COLEGIUL TEHNIC „PETRU MAIOR”</option>
+								<option value="631">COLEGIUL TEHNIC „GHEORGHE ASACHI”</option>
+								<option value="632">COLEGIUL TEHNIC „CAROL I”</option>
+								<option value="633">ŞCOALA POSTLICEALĂ DE ANTRENORI „IOAN KUNST GHERMĂNESCU”</option>
+								<option value="634">ŞCOALA POSTLICEALĂ SANITARĂ „DR. CONSTANTIN ANGELESCU”**</option>
+								<option value="635">ȘCOALA POSTLICEALĂ SANITARĂ „ARTIFEX”</option>
+								<option value="636">ŞCOALA SANITARĂ POSTLICEALĂ „VITA”</option>
+								<option value="637">GRĂDINIŢA NR. 116</option>
+								<option value="638">GRADINITA IILO</option>
+								<option value="639">GRADINITA LICURICI</option>
+								<option value="640">GRADINITA PARADISUL COPIILOR</option>
+								<option value="641">PALATUL NATIONAL AL COPIILOR</option>
+								<option value="642">GRĂDINIŢA SMART STEPS</option>
+								<option value="643">The INTERNATIONAL SCHOOL OF BUCHAREST</option>
+								<option value="644">GRADINITA SOFIA</option>
+								<option value="645">UM 02490</option>
+								<option value="646">GRADINITA MAGICA</option>
+								<option value="647">ȘCOALA PRIMARA SINCRON</option>
+								<option value="648">GRĂDINIȚA LA TURN</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="password" class="cols-sm-2 control-label">Parolă</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+							<input type="password" class="form-control" name="password" id="password"
+							       placeholder="Introdu-ţi parola" required/>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="confirm" class="cols-sm-2 control-label">Confirmă parola</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+							<input type="password" class="form-control" name="confirm" id="confirm"
+							       placeholder="Confirmă-ţi parola" required/>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="cols-sm-2 control-label">Confirmă că eşti om</label>
+					<div class="cols-sm-10">
+						<div class="form-control-static g-recaptcha" data-sitekey="6LcKZwoUAAAAANjLrUp-ED7tqHAMHiKt7G5ZUMtK"></div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-lg btn-block login-button">Înregistrare</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='chosen.jquery.min.js') }}"></script>
+
+<script type="text/javascript">
+	var config = {
+	'.chosen-select': {},
+	}
+	for (var selector in config) {
+		$(selector).chosen(config[selector]);
+	}
+</script>
+</body>
+</html>

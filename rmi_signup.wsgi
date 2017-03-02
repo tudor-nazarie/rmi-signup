@@ -1,0 +1,1 @@
+from rmi_signup import app as application
